@@ -5,3 +5,7 @@
     overflow: hidden;
     margin: 0 auto;
 }
+
+.img-responsive {
+    margin: 0 auto 10px;
+}
