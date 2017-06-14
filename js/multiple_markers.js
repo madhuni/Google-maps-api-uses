@@ -1,4 +1,3 @@
-console.log("Hey I am working fine");
 var map;
 
 /* This array will contain all the markers related to the locations */
@@ -38,19 +37,26 @@ function initMap () {
             animation: google.maps.Animation.DROP
         });
         
+        /* Pushing the each marker Object into the array */
         markers.push(marker);
         
+        /* Adding the 'click' event to each marker */
         marker.addListener('click', function () {
             console.log(this);
             displayInfoWindow(this, largeInfoWindow);
         });
         
+        /* 
+        * This will make the such that it will bind all the markers and display 
+        * them properly on the map 
+        */
         bounds.extend(markers[i].position);
     }
     
     map.fitBounds(bounds);
 };
 
+/* This function will be called by each marker to show the infowindow on the marker */
 function displayInfoWindow (marker, infoWindow) {
     if (infoWindow.marker !== marker) {
         infoWindow.marker = marker;
