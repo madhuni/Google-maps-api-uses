@@ -24,6 +24,7 @@ function initMap () {
     ];
 
     var bounds = new google.maps.LatLngBounds();
+    var largeInfoWindow = new google.maps.InfoWindow();
     
     for (var i = 0; i < locations.length; i++) {
         var title = locations[i].title;
@@ -39,9 +40,21 @@ function initMap () {
         
         markers.push(marker);
         
+        marker.addListener('click', function () {
+            displayInfoWindow(this, largeInfoWindow);
+        });
+        
         bounds.extend(markers[i].position);
     }
     
     map.fitBounds(bounds);
+    
+    function displayInfoWindow (marker, infoWindow) {
+        if (infoWindow.marker !== marker) {
+            infoWindow.marker = marker;
+            infoWindow.setContent("This is "+ marker.title);
+            infoWindow.open(map, marker);
+        }
+    };
 };
 
