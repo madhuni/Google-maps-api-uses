@@ -23,6 +23,8 @@ function initMap () {
         {title: 'Chinatown Homey Space', location: {lat: 40.7180628, lng: -73.9961237}}
     ];
 
+    var bounds = new google.maps.LatLngBounds();
+    
     for (var i = 0; i < locations.length; i++) {
         var title = locations[i].title;
         var position = locations[i].location;
@@ -36,6 +38,10 @@ function initMap () {
         });
         
         markers.push(marker);
+        
+        bounds.extend(markers[i].position);
     }
+    
+    map.fitBounds(bounds);
 };
 
