@@ -41,6 +41,7 @@ function initMap () {
         markers.push(marker);
         
         marker.addListener('click', function () {
+            console.log(this);
             displayInfoWindow(this, largeInfoWindow);
         });
         
@@ -48,13 +49,12 @@ function initMap () {
     }
     
     map.fitBounds(bounds);
-    
-    function displayInfoWindow (marker, infoWindow) {
-        if (infoWindow.marker !== marker) {
-            infoWindow.marker = marker;
-            infoWindow.setContent("This is "+ marker.title);
-            infoWindow.open(map, marker);
-        }
-    };
 };
 
+function displayInfoWindow (marker, infoWindow) {
+    if (infoWindow.marker !== marker) {
+        infoWindow.marker = marker;
+        infoWindow.setContent("This is "+ marker.title);
+        infoWindow.open(map, marker);
+    }
+};
